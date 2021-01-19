@@ -7,18 +7,16 @@ const weatherDesc = mainCity.querySelector('.city__descrip-weather');
 const weatherIcon = mainCity.querySelector('.city__icon-weather');
 const cityDate = mainCity.querySelector('.city__date');
 
-const temFeelsLike = document.querySelector('.add-info__data_type_feels');
-const wind = document.querySelector('.add-info__data_type_wind');
-const humidity = document.querySelector('.add-info__data_type_humidity');
-const userCity = document.querySelector('.add-info__list-el_type_main');
-const precipitation = document.querySelector('.add-info__data_type_precipitation');
+const addInfo = document.querySelector('.add-info');
+const searchForm = addInfo.querySelector('.add-info__form');
+const temFeelsLike = addInfo.querySelector('.add-info__data_type_feels');
+const wind = addInfo.querySelector('.add-info__data_type_wind');
+const humidity = addInfo.querySelector('.add-info__data_type_humidity');
+const userCity = addInfo.querySelector('.add-info__list-el_type_main');
+const precipitation = addInfo.querySelector('.add-info__data_type_precipitation');
 
 const photoTown = document.querySelector('.weather__pic');
 
-const searchForm = document.querySelector('.add-info__form');
-
-
-const api = new Api();
 
 
 
@@ -133,20 +131,31 @@ function updateInfo(nameOfCity = cityName.textContent) {
 
 
 
+
+
 // ---СЛУШАТЕЛИ СОБЫТИЙ---
 searchForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   let nameOfCity = document.querySelector('.add-info__input').value;
   updateInfo(nameOfCity);
   searchForm.reset();
-
 });
+
+addInfo.querySelectorAll('.add-info__list-el').forEach(item => {
+  item.addEventListener("click", () => {
+    updateInfo(item.textContent);
+  })
+})
 
 
 
 // ---ДЕЙСТВИЯ ПРИ ЗАКГРУЗКЕ СТРАНИЦЫ---
+
+const api = new Api();
+
 // получаем данные при начальной загрузке страницы
 getFirstInfo();
 
 // обновляем данные каждые 10 сек
 setInterval(updateInfo, 10000);
+
