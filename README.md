@@ -8,4 +8,4 @@
 
 
 
-**Итоговый вид страницы:** [Ссылка на страницу проекта](https://aleksandra-shevchenko.github.io/weather/index.html)
+**Итоговый вид страницы:** [Ссылка на страницу проекта](http://aleksandra-shevchenko.github.io/weather/index.html)
