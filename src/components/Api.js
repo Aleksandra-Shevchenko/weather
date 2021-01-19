@@ -3,7 +3,7 @@
 export default class Api {
   constructor() {
     this._keyWeather = '14926d4323273168c22be818f4f8b491';
-    this._mainUrl = 'http://api.openweathermap.org/data/2.5/weather?';
+    this._mainUrl = 'https://api.openweathermap.org/data/2.5/weather?';
     this._keyPhoto = '19932890-3440ea8c759315d97a3ef428e';
     this._photoUrl = 'https://pixabay.com/api/?key='
   }
