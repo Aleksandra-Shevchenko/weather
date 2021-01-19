@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather</title>
+  <link rel="stylesheet" href="./src/pages/index.css">
+
+</head>
+
+<body>
+  <div class="page">
+    <main class="container">
+      <section class="weather">
+        <img class="weather__pic" src="#" alt="Изображение города/погоды">
+        <div class="logo">Логотип</div>
+        <div class="city">
+          <p class="city__tem">25</p>
+          <div class="city__info">
+            <h1 class="city__name"></h1>
+            <p class="city__date">25 Jan 2021</p>
+          </div>
+          <div class="city__weather">
+            <div class="city__box-for-pic">
+              <img src="#" alt="" class="city__icon-weather">
+            </div>
+            <p class="city__descrip-weather"></p>
+          </div>
+        </div>
+        <div class="add-info">
+          <form class="add-info__form" name="addInfoForm">
+            <input id="add-info-input" type="text" placeholder="Найти город" class="add-info__input"
+              name="city" required>
+            <button class="add-info__submit-btn" type="submit">
+              <img class="add-info__search-pic" src="./src/images/search.svg" alt="Кнопка Найти">
+            </button>
+          </form>
+          <ul class="add-info__list add-info__list_type_cities">
+            <li class="add-info__list-el add-info__list-el_type_main">Cfff</li>
+            <li class="add-info__list-el">Москва</li>
+            <li class="add-info__list-el">Лондон</li>
+            <li class="add-info__list-el">Нью-Йорк</li>
+          </ul>
+          <h2 class="add-info__title">Погодные условия</h2>
+          <ul class="add-info__list">
+            <li class="add-info__list-el">Ощущается как<span class="add-info__data add-info__data_type_feels">-5</span>
+            </li>
+            <li class="add-info__list-el">Скорость ветра<span class="add-info__data add-info__data_type_wind">-5</span>
+            </li>
+            <li class="add-info__list-el">Влажность<span class="add-info__data add-info__data_type_humidity">-5</span>
+            </li>
+            <li class="add-info__list-el">Осадки<span class="add-info__data add-info__data_type_precipitation">0
+                мм</span></li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <script type="module" src="./src/pages/index.js"></script>
+</body>
+
+</html>
