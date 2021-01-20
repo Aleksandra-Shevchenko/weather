@@ -29,36 +29,52 @@
           </div>
         </div>
         <div class="add-info">
-          <form class="add-info__form" name="addInfoForm">
-            <input id="add-info-input" type="text" placeholder="Найти город" class="add-info__input"
-              name="city" required>
-            <button class="add-info__submit-btn" type="submit">
-              <img class="add-info__search-pic" src="./src/images/search.svg" alt="Кнопка Найти">
-            </button>
-          </form>
-          <ul class="add-info__list add-info__list_type_cities">
-            <li class="add-info__list-el add-info__list-el_type_main add-info__list-el_type_city">Cfff</li>
-            <li class="add-info__list-el add-info__list-el_type_city">Москва</li>
-            <li class="add-info__list-el add-info__list-el_type_city">Лондон</li>
-            <li class="add-info__list-el add-info__list-el_type_city">Нью-Йорк</li>
-          </ul>
-          <h2 class="add-info__title">Погодные условия</h2>
-          <ul class="add-info__list">
-            <li class="add-info__list-el">Ощущается как<span class="add-info__data add-info__data_type_feels">-5</span>
-            </li>
-            <li class="add-info__list-el">Скорость ветра<span class="add-info__data add-info__data_type_wind">-5</span>
-            </li>
-            <li class="add-info__list-el">Влажность<span class="add-info__data add-info__data_type_humidity">-5</span>
-            </li>
-            <li class="add-info__list-el">Осадки<span class="add-info__data add-info__data_type_precipitation">0
-                мм</span></li>
-          </ul>
+          <div class="add-info__cities">
+            <form class="add-info__form" name="addInfoForm">
+              <input id="add-info-input" type="text" placeholder="Найти город" class="add-info__input" name="city"
+                required>
+              <button class="add-info__submit-btn" type="submit">
+                <img class="add-info__search-pic" src="./src/images/search.svg" alt="Кнопка Найти">
+              </button>
+            </form>
+            <ul class="add-info__list add-info__list_type_cities">
+              <li class="add-info__list-el add-info__list-el_type_main add-info__list-el_type_city">Ваше местопопложение</li>
+              <li class="add-info__list-el add-info__list-el_type_city">Москва</li>
+              <li class="add-info__list-el add-info__list-el_type_city">Лондон</li>
+              <li class="add-info__list-el add-info__list-el_type_city">Нью-Йорк</li>
+            </ul>
+          </div>
+          <div class="add-info__box-weather">
+            <h2 class="add-info__title">Погодные условия</h2>
+            <ul class="add-info__list">
+              <li class="add-info__list-el">Ощущается как<span
+                  class="add-info__data add-info__data_type_feels">-5</span>
+              </li>
+              <li class="add-info__list-el">Скорость ветра<span
+                  class="add-info__data add-info__data_type_wind">-5</span>
+              </li>
+              <li class="add-info__list-el">Влажность<span class="add-info__data add-info__data_type_humidity">-5</span>
+              </li>
+              <li class="add-info__list-el">Осадки<span class="add-info__data add-info__data_type_precipitation">0
+                  мм</span></li>
+            </ul>
+          </div>
+          <div id="map"></div>
         </div>
       </section>
 
     </main>
   </div>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-K0kP03lam2vgWViJdxrWd9XfA9A2tJM"
+    type="text/javascript">
+  </script>
   <script type="module" src="./src/pages/index.js"></script>
+
+
 </body>
 
 </html>
+
+<!-- AIzaSyD-K0kP03lam2vgWViJdxrWd9XfA9A2tJM -->
+<!-- &callback=initMap -->

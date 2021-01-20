@@ -1,4 +1,5 @@
 import Api from "../components/Api.js";
+import initMap from "../components/Map.js";
 
 const mainCity = document.querySelector('.city');
 const temperature = mainCity.querySelector('.city__tem');
@@ -16,9 +17,6 @@ const userCity = addInfo.querySelector('.add-info__list-el_type_main');
 const precipitation = addInfo.querySelector('.add-info__data_type_precipitation');
 
 const photoTown = document.querySelector('.weather__pic');
-
-
-
 
 
 // функция отображения данных на странице
@@ -41,7 +39,7 @@ function getUserCity(data) {
 }
 
 function findPrecipitation(data) {
-  if(!data.rain && !data.snow) {
+  if (!data.rain && !data.snow) {
     return '0 мм';
   }
   return `${(data.rain) ? data.rain['1h'] : data.snow['1h']} мм`
@@ -71,21 +69,20 @@ function genereteDate(data) {
 }
 
 
-
-
 function getFirstInfo() {
-  api.getLocation()
-    .then(data => {
-      api.getWeather(data.latitude, data.longitude)
-        .then(data => {
-          findPhoto(data);
-          changeContent(data);
-          getUserCity(data);
-        })
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+  navigator.geolocation.getCurrentPosition(position => {
+    initMap(position.coords.latitude, position.coords.longitude);
+    api.getWeather(position.coords.latitude, position.coords.longitude)
+      .then(data => {
+        findPhoto(data);
+        changeContent(data);
+        getUserCity(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  })
+
 }
 
 
@@ -118,16 +115,19 @@ function findPhoto(dataWeather) {
 
 function updateInfo(nameOfCity = cityName.textContent) {
   api.getAnotherWeather(nameOfCity)
-  .then(data => {
-    if (cityName.textContent !== data.name) {
-      findPhoto(data);
-    }
-    changeContent(data);
-  })
-  .catch((err) => {
-    console.log(err);
-  })
+    .then(data => {
+      if (cityName.textContent !== data.name) {
+        findPhoto(data);
+        initMap(data.coord.lat, data.coord.lon);
+      }
+      changeContent(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 }
+
+
 
 
 
@@ -157,3 +157,22 @@ getFirstInfo();
 // обновляем данные каждые 30 сек
 setInterval(updateInfo, 30000);
 
+
+
+
+
+// function getFirstInfo() {
+//   api.getLocation()
+//     .then(data => {
+//       initMap(data.latitude, data.longitude);
+//       api.getWeather(data.latitude, data.longitude)
+//         .then(data => {
+//           findPhoto(data);
+//           changeContent(data);
+//           getUserCity(data);
+//         })
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     })
+// }
