@@ -104,3 +104,12 @@
   margin: 0;
   margin-bottom: 20px;
 }
+
+
+.add-info__map{
+  width: 100%;
+  min-height: 20%;
+  box-sizing: border-box;
+  display: block;
+  flex-grow: 1;
+}

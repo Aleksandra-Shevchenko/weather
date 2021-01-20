@@ -33,11 +33,12 @@ function changeContent(data) {
 }
 
 
-
+// функция отображения города пользователя в панели слева
 function getUserCity(data) {
   userCity.textContent = data.name;
 }
 
+// функция отображения осадков
 function findPrecipitation(data) {
   if (!data.rain && !data.snow) {
     return '0 мм';
@@ -69,27 +70,12 @@ function genereteDate(data) {
 }
 
 
-function getFirstInfo() {
-  navigator.geolocation.getCurrentPosition(position => {
-    initMap(position.coords.latitude, position.coords.longitude);
-    api.getWeather(position.coords.latitude, position.coords.longitude)
-      .then(data => {
-        findPhoto(data);
-        changeContent(data);
-        getUserCity(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  })
-
-}
-
-
+// функция отрисовки фото
 function changePhoto(dataPhoto) {
   photoTown.src = dataPhoto.hits[0]['largeImageURL'];
 }
 
+// функция фильтрации фото
 function findPhoto(dataWeather) {
   console.log(dataWeather);
   const weather = dataWeather.weather[0].main;
@@ -113,6 +99,46 @@ function findPhoto(dataWeather) {
     })
 }
 
+
+// функция первичной отрисовки информации
+function getFirstInfo() {
+  navigator.geolocation.getCurrentPosition(position => {
+      initMap(position.coords.latitude, position.coords.longitude);
+      api.getWeather(position.coords.latitude, position.coords.longitude)
+        .then(data => {
+          findPhoto(data);
+          changeContent(data);
+          getUserCity(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    },
+    function (error) {
+      if (error.code == error.PERMISSION_DENIED) {
+        api.getLocation()
+          .then(data => {
+            initMap(data.latitude, data.longitude);
+            api.getWeather(data.latitude, data.longitude)
+              .then(data => {
+                findPhoto(data);
+                changeContent(data);
+                getUserCity(data);
+              })
+              .catch((err) => {
+                console.log(err);
+              })
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      }
+    }
+  )
+}
+
+
+// функция обновления информации
 function updateInfo(nameOfCity = cityName.textContent) {
   api.getAnotherWeather(nameOfCity)
     .then(data => {
@@ -126,8 +152,6 @@ function updateInfo(nameOfCity = cityName.textContent) {
       console.log(err);
     })
 }
-
-
 
 
 
@@ -148,7 +172,6 @@ addInfo.querySelectorAll('.add-info__list-el').forEach(item => {
 
 
 // ---ДЕЙСТВИЯ ПРИ ЗАКГРУЗКЕ СТРАНИЦЫ---
-
 const api = new Api();
 
 // получаем данные при начальной загрузке страницы
@@ -156,23 +179,3 @@ getFirstInfo();
 
 // обновляем данные каждые 30 сек
 setInterval(updateInfo, 30000);
-
-
-
-
-
-// function getFirstInfo() {
-//   api.getLocation()
-//     .then(data => {
-//       initMap(data.latitude, data.longitude);
-//       api.getWeather(data.latitude, data.longitude)
-//         .then(data => {
-//           findPhoto(data);
-//           changeContent(data);
-//           getUserCity(data);
-//         })
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     })
-// }

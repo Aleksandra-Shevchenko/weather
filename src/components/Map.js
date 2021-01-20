@@ -7,7 +7,7 @@ let map;
       lat: lat,
       lng: lng
     },
-    zoom: 8,
+    zoom: 7,
     disableDefaultUI: true,
     // zoomControl: true,
     // zoomControlOptions: {style: google.maps.ZoomControlStyle.SMALL},
