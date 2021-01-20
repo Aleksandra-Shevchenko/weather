@@ -131,8 +131,6 @@ function updateInfo(nameOfCity = cityName.textContent) {
 
 
 
-
-
 // ---СЛУШАТЕЛИ СОБЫТИЙ---
 searchForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
@@ -156,6 +154,6 @@ const api = new Api();
 // получаем данные при начальной загрузке страницы
 getFirstInfo();
 
-// обновляем данные каждые 10 сек
-setInterval(updateInfo, 10000);
+// обновляем данные каждые 30 сек
+setInterval(updateInfo, 30000);
 
