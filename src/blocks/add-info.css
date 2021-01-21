@@ -1,31 +1,25 @@
-
-.add-info{
+.add-info {
   z-index: 2;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
   width: 32%;
-  height: 100%;
-  background-color: rgba(0,0, 0, .4);
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .4);
   color: #fff;
   padding: 30px 30px;
   box-sizing: border-box;
-  /* overflow: hidden; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
 }
 
-.add-info__title{
+.add-info__title {
   font-size: 30px;
   margin: 0;
   border-top: 3px solid #ed6e4d;
   padding-top: 20px;
 }
 
-.add-info__list{
+.add-info__list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -54,7 +48,7 @@
   width: 100%;
 }
 
-.add-info__input{
+.add-info__input {
   width: 100%;
   border: none;
   background-color: transparent;
@@ -62,11 +56,11 @@
   border-bottom: 3px solid #ed6e4d;
   font-size: 30px;
   letter-spacing: 4px;
-  margin:  0;
-  padding:  8px 0;
+  margin: 0;
+  padding: 8px 0;
 }
 
-.add-info__submit-btn{
+.add-info__submit-btn {
   width: 50px;
   height: auto;
   background-color: transparent;
@@ -77,7 +71,7 @@
   color: #fff;
 }
 
-.add-info__submit-btn:hover{
+.add-info__submit-btn:hover {
   cursor: pointer;
 }
 
@@ -89,26 +83,69 @@
   opacity: .6;
 }
 
-.add-info__list-el_type_city:hover{
+.add-info__list-el_type_city:hover {
   cursor: pointer;
   opacity: .6;
 }
 
 
-.add-info__box-weather{
+.add-info__box-weather {
   margin: 0;
   margin-bottom: 20px;
 }
 
-.add-info__cities{
+.add-info__cities {
   margin: 0;
   margin-bottom: 20px;
 }
 
 
-.add-info__map{
+.add-info__map {
   width: 100%;
+  min-height: 150px;
+  max-height: 300px;
   box-sizing: border-box;
   display: block;
   flex-grow: 1;
+}
+
+
+
+@media screen and (max-width: 1100px) {
+  .add-info {
+    padding: 30px 20px;
+  }
+
+  .add-info__title {
+    font-size: 24px;
+    padding-top: 16px;
+  }
+
+  .add-info__list-el {
+    font-size: 18px;
+    margin: 0 0 12px 0;
+  }
+
+  .add-info__input {
+    font-size: 24px;
+    padding: 4px 0;
+  }
+
+  .add-info__submit-btn {
+    width: 40px;
+  }
+
+  .add-info__data {
+    letter-spacing: 1.6px;
+  }
+}
+
+
+@media screen and (max-width: 859px) {
+  .add-info {
+    width: 100%;
+    height: auto;
+    background-color: rgba(0, 0, 0, .8);
+    padding: 30px 30px;
+  }
 }

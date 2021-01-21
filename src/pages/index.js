@@ -17,7 +17,10 @@ const humidity = addInfo.querySelector('.add-info__data_type_humidity');
 const userCity = addInfo.querySelector('.add-info__list-el_type_main');
 const precipitation = addInfo.querySelector('.add-info__data_type_precipitation');
 
-const photoTown = document.querySelector('.weather__pic');
+const photoTown = document.querySelector('.container__pic');
+
+const days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+const months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
 
 // функция отображения данных на странице
@@ -51,8 +54,6 @@ function findPrecipitation(data) {
 // функция верного отображения времени
 function genereteDate(data) {
   const ourDate = new Date(Date.now() + (data.timezone * 1000));
-  const days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
-  const months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
   function formatTime(num) {
     if (String(num).length < 2) {

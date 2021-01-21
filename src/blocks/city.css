@@ -5,10 +5,11 @@
   position: relative;
   justify-content: flex-start;
   align-items: flex-end;
-  width: 57%;
+  width: 100%;
   height: 100%;
   color: #fff;
-  margin: 0 0 12% 6%;
+  padding: 0 4% 12% 6%;
+  box-sizing: border-box;
 }
 
 .city__tem{
@@ -43,7 +44,7 @@
 
 .city__weather{
   margin: 0;
-  align-self: flex-start;
+  /* align-self: flex-start; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +65,7 @@
   position: absolute;
   top: 28px;
   left: -1px;
-  width: 140px;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -73,4 +74,123 @@
   font-size: 22px;
   line-height: 24px;
   text-align: center;
+}
+
+
+@media screen and (max-width: 1100px) {
+  .city__tem{
+    font-size: 120px;
+    line-height: 90px;
+  }
+  .city__name{
+    font-size: 38px;
+    line-height: 38px;
+  }
+
+  .city__date{
+    font-size: 22px;
+  }
+
+  .city__descrip-weather{
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .city__box-for-pic{
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
+@media screen and (max-width: 859px) {
+  .city {
+    justify-content: center;
+    padding: 0 4% 6% 4%;
+
+  }
+}
+
+@media screen and (max-width: 659px) {
+  .city__tem{
+    font-size: 100px;
+    line-height: 80px;
+  }
+  .city__name{
+    font-size: 28px;
+    line-height: 28px;
+  }
+
+  .city__date{
+    font-size: 16px;
+  }
+
+  .city__descrip-weather{
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 2px;
+  }
+
+  .city__box-for-pic{
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .city {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    padding: 4% 4%;
+  }
+
+  .city__tem{
+    font-size: 70px;
+    line-height: 70px;
+  }
+
+  .city__box-for-pic{
+    width: 100px;
+    height: 60px;
+    margin: 0;
+
+  }
+
+  .city__info{
+    margin: 0;
+    align-self: flex-end;
+    text-align: end;
+    border-right: none;
+  }
+
+  .city__name{
+    margin: 0 0 6px 0;
+  }
+
+  .city__date{
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  .city__icon-weather{
+    top: -21px;
+    left: 12px;
+    width: 100%;
+  }
+
+  .city__descrip-weather{
+    text-align: end;
+    max-width: 100px;
+    object-fit: contain;
+  }
+
+  .city__weather{
+    align-items: flex-end;
+    justify-content: flex-end;
+    align-self: flex-end;
+    height: 100px;
+  }
 }

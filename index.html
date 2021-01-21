@@ -8,23 +8,24 @@
   <link rel="stylesheet" href="./src/pages/index.css">
   <style>
     [class*="ymaps-2"][class*="-ground-pane"] {
-        filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
-        -webkit-filter: invert(100%) grayscale(65%);
+      filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+      -webkit-filter: invert(100%) grayscale(65%);
     }
+
   </style>
 </head>
 
 <body>
   <div class="page">
     <main class="container">
+      <img class="container__pic" src="#" alt="Изображение города/погоды">
       <section class="weather">
-        <img class="weather__pic" src="#" alt="Изображение города/погоды">
-        <div class="logo">Логотип</div>
+        <div class="logo"></div>
         <div class="city">
-          <p class="city__tem">25</p>
+          <p class="city__tem">15&deg;</p>
           <div class="city__info">
-            <h1 class="city__name"></h1>
-            <p class="city__date">25 Jan 2021</p>
+            <h1 class="city__name">Город</h1>
+            <p class="city__date">ЧЧ:ММ - Число Месяц Год</p>
           </div>
           <div class="city__weather">
             <div class="city__box-for-pic">
@@ -33,41 +34,39 @@
             <p class="city__descrip-weather"></p>
           </div>
         </div>
-        <div class="add-info">
-          <div class="add-info__cities">
-            <form class="add-info__form" name="addInfoForm">
-              <input id="add-info-input" type="text" placeholder="Найти город" class="add-info__input" name="city"
-                required>
-              <button class="add-info__submit-btn" type="submit">
-                <img class="add-info__search-pic" src="./src/images/search.svg" alt="Кнопка Найти">
-              </button>
-            </form>
-            <ul class="add-info__list add-info__list_type_cities">
-              <li class="add-info__list-el add-info__list-el_type_main add-info__list-el_type_city">Ваше местопопложение</li>
-              <li class="add-info__list-el add-info__list-el_type_city">Москва</li>
-              <li class="add-info__list-el add-info__list-el_type_city">Лондон</li>
-              <li class="add-info__list-el add-info__list-el_type_city">Нью-Йорк</li>
-            </ul>
-          </div>
-          <div class="add-info__box-weather">
-            <h2 class="add-info__title">Погодные условия</h2>
-            <ul class="add-info__list">
-              <li class="add-info__list-el">Ощущается как<span
-                  class="add-info__data add-info__data_type_feels">-5</span>
-              </li>
-              <li class="add-info__list-el">Скорость ветра<span
-                  class="add-info__data add-info__data_type_wind">-5</span>
-              </li>
-              <li class="add-info__list-el">Влажность<span class="add-info__data add-info__data_type_humidity">-5</span>
-              </li>
-              <li class="add-info__list-el">Осадки<span class="add-info__data add-info__data_type_precipitation">0
-                  мм</span></li>
-            </ul>
-          </div>
-          <div id="map" class="add-info__map"></div>
-        </div>
       </section>
-
+      <section class="add-info">
+        <div class="add-info__cities">
+          <form class="add-info__form" name="addInfoForm">
+            <input id="add-info-input" type="text" placeholder="Найти город" class="add-info__input" name="city"
+              required>
+            <button class="add-info__submit-btn" type="submit">
+              <img class="add-info__search-pic" src="./src/images/search.svg" alt="Кнопка Найти">
+            </button>
+          </form>
+          <ul class="add-info__list add-info__list_type_cities">
+            <li class="add-info__list-el add-info__list-el_type_main add-info__list-el_type_city">Ваше местопопложение
+            </li>
+            <li class="add-info__list-el add-info__list-el_type_city">Москва</li>
+            <li class="add-info__list-el add-info__list-el_type_city">Лондон</li>
+            <li class="add-info__list-el add-info__list-el_type_city">Нью-Йорк</li>
+          </ul>
+        </div>
+        <div class="add-info__box-weather">
+          <h2 class="add-info__title">Погодные условия</h2>
+          <ul class="add-info__list">
+            <li class="add-info__list-el">Ощущается как<span class="add-info__data add-info__data_type_feels">-5</span>
+            </li>
+            <li class="add-info__list-el">Скорость ветра<span class="add-info__data add-info__data_type_wind">-5</span>
+            </li>
+            <li class="add-info__list-el">Влажность<span class="add-info__data add-info__data_type_humidity">-5</span>
+            </li>
+            <li class="add-info__list-el">Осадки<span class="add-info__data add-info__data_type_precipitation">0
+                мм</span></li>
+          </ul>
+        </div>
+        <div id="map" class="add-info__map"></div>
+      </section>
     </main>
   </div>
 
