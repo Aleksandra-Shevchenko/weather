@@ -1,5 +1,6 @@
 import Api from "../components/Api.js";
-import initMap from "../components/Map.js";
+import { createdMap, initMap, deleteMap } from "../components/ymap.js";
+
 
 const mainCity = document.querySelector('.city');
 const temperature = mainCity.querySelector('.city__tem');
@@ -100,10 +101,11 @@ function findPhoto(dataWeather) {
 }
 
 
+
 // функция первичной отрисовки информации
 function getFirstInfo() {
   navigator.geolocation.getCurrentPosition(position => {
-      initMap(position.coords.latitude, position.coords.longitude);
+      createdMap(position.coords.latitude, position.coords.longitude);
       api.getWeather(position.coords.latitude, position.coords.longitude)
         .then(data => {
           findPhoto(data);
@@ -118,7 +120,7 @@ function getFirstInfo() {
       if (error.code == error.PERMISSION_DENIED) {
         api.getLocation()
           .then(data => {
-            initMap(data.latitude, data.longitude);
+            createdMap(data.latitude, data.longitude);
             api.getWeather(data.latitude, data.longitude)
               .then(data => {
                 findPhoto(data);
@@ -144,6 +146,7 @@ function updateInfo(nameOfCity = cityName.textContent) {
     .then(data => {
       if (cityName.textContent !== data.name) {
         findPhoto(data);
+        deleteMap();
         initMap(data.coord.lat, data.coord.lon);
       }
       changeContent(data);

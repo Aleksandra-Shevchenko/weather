@@ -42,6 +42,7 @@ export default class Api {
       })
   }
 
+  // &category=places
 
   getPhoto(data) {
     //делаем запрос на фото по городу

@@ -1,4 +1,3 @@
-
 let map;
 
  export default function initMap(lat, lng) {
