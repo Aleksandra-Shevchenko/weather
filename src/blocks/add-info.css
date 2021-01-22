@@ -52,6 +52,7 @@
   width: 100%;
   border: none;
   background-color: transparent;
+  border-radius: none;
   color: #fff;
   border-bottom: 3px solid #ed6e4d;
   font-size: 30px;
@@ -102,8 +103,8 @@
 
 .add-info__map {
   width: 100%;
-  min-height: 150px;
-  max-height: 300px;
+  min-height: auto;
+  max-height: 260px;
   box-sizing: border-box;
   display: block;
   flex-grow: 1;
@@ -145,7 +146,24 @@
   .add-info {
     width: 100%;
     height: auto;
-    background-color: rgba(0, 0, 0, .8);
+    background-color: rgba(255, 255, 255, 0.1);
     padding: 30px 30px;
   }
+
+  .add-info__map {
+    min-height: 200px;
+  }
+
+}
+
+@media screen and (max-width: 490px) {
+  .add-info {
+    padding: 30px 30px 50px;
+  }
+
+  .add-info__list-el {
+    font-size: 20px;
+    margin: 0 0 16px 0;
+  }
+
 }

@@ -1,45 +1,25 @@
+import { config } from "../utils/constants.js";
 import Api from "../components/Api.js";
 import { createdMap, initMap, deleteMap } from "../components/ymap.js";
 
 
-const mainCity = document.querySelector('.city');
-const temperature = mainCity.querySelector('.city__tem');
-const cityName = mainCity.querySelector('.city__name');
-const weatherDesc = mainCity.querySelector('.city__descrip-weather');
-const weatherIcon = mainCity.querySelector('.city__icon-weather');
-const cityDate = mainCity.querySelector('.city__date');
-
-const addInfo = document.querySelector('.add-info');
-const searchForm = addInfo.querySelector('.add-info__form');
-const temFeelsLike = addInfo.querySelector('.add-info__data_type_feels');
-const wind = addInfo.querySelector('.add-info__data_type_wind');
-const humidity = addInfo.querySelector('.add-info__data_type_humidity');
-const userCity = addInfo.querySelector('.add-info__list-el_type_main');
-const precipitation = addInfo.querySelector('.add-info__data_type_precipitation');
-
-const photoTown = document.querySelector('.container__pic');
-
-const days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
-const months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
-
-
+// ---ФУНКЦИИ---
 // функция отображения данных на странице
 function changeContent(data) {
-  cityName.textContent = data.name;
-  temperature.innerHTML = Math.round(data.main.temp) + '&deg;';
-  weatherDesc.textContent = data.weather[0]['description'];
-  weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png`;
-  cityDate.textContent = genereteDate(data);
-  temFeelsLike.innerHTML = Math.round(data.main.feels_like) + '&deg;';
-  wind.textContent = `${data.wind.speed} м/с`;
-  humidity.textContent = `${data.main.humidity}%`;
-  precipitation.textContent = findPrecipitation(data);
+  config.cityName.textContent = data.name;
+  config.temperature.innerHTML = Math.round(data.main.temp) + '&deg;';
+  config.weatherDesc.textContent = data.weather[0]['description'];
+  config.weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png`;
+  config.cityDate.textContent = genereteDate(data);
+  config.temFeelsLike.innerHTML = Math.round(data.main.feels_like) + '&deg;';
+  config.wind.textContent = `${data.wind.speed} м/с`;
+  config.humidity.textContent = `${data.main.humidity}%`;
+  config.precipitation.textContent = findPrecipitation(data);
 }
-
 
 // функция отображения города пользователя в панели слева
 function getUserCity(data) {
-  userCity.textContent = data.name;
+  config.userCity.textContent = data.name;
 }
 
 // функция отображения осадков
@@ -49,7 +29,6 @@ function findPrecipitation(data) {
   }
   return `${(data.rain) ? data.rain['1h'] : data.snow['1h']} мм`
 }
-
 
 // функция верного отображения времени
 function genereteDate(data) {
@@ -63,9 +42,9 @@ function genereteDate(data) {
   }
 
   const resStr = `${formatTime(ourDate.getUTCHours())}:${formatTime(ourDate.getUTCMinutes())}
-  - ${days[ourDate.getDay()]},
+  - ${config.forDate.days[ourDate.getDay()]},
   ${ourDate.getUTCDate()}
-  ${months[ourDate.getMonth()]}
+  ${config.forDate.months[ourDate.getMonth()]}
   ${ourDate.getUTCFullYear()}`;
 
   return resStr;
@@ -74,14 +53,12 @@ function genereteDate(data) {
 
 // функция отрисовки фото
 function changePhoto(dataPhoto) {
-  photoTown.src = dataPhoto.hits[0]['largeImageURL'];
+  config.photoTown.src = dataPhoto.hits[0]['largeImageURL'];
 }
 
 // функция фильтрации фото
 function findPhoto(dataWeather) {
-  console.log(dataWeather);
   const weather = dataWeather.weather[0].main;
-
   api.getPhoto(dataWeather)
     .then(dataPhoto => {
       if (dataPhoto.total !== 0) {
@@ -100,8 +77,6 @@ function findPhoto(dataWeather) {
       console.log(err);
     })
 }
-
-
 
 // функция первичной отрисовки информации
 function getFirstInfo() {
@@ -140,12 +115,11 @@ function getFirstInfo() {
   )
 }
 
-
 // функция обновления информации
-function updateInfo(nameOfCity = cityName.textContent) {
+function updateInfo(nameOfCity = config.cityName.textContent) {
   api.getAnotherWeather(nameOfCity)
     .then(data => {
-      if (cityName.textContent !== data.name) {
+      if (config.cityName.textContent !== data.name) {
         findPhoto(data);
         deleteMap();
         initMap(data.coord.lat, data.coord.lon);
@@ -160,14 +134,14 @@ function updateInfo(nameOfCity = cityName.textContent) {
 
 
 // ---СЛУШАТЕЛИ СОБЫТИЙ---
-searchForm.addEventListener("submit", (evt) => {
+config.searchForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   let nameOfCity = document.querySelector('.add-info__input').value;
   updateInfo(nameOfCity);
-  searchForm.reset();
+  config.searchForm.reset();
 });
 
-addInfo.querySelectorAll('.add-info__list-el').forEach(item => {
+config.addInfo.querySelectorAll('.add-info__list-el').forEach(item => {
   item.addEventListener("click", () => {
     updateInfo(item.textContent);
   })
