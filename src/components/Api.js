@@ -44,9 +44,9 @@ export default class Api {
 
   // &category=places
 
-  getPhoto(data) {
-    //делаем запрос на фото по городу
-    return fetch(`${this._photoUrl}${this._keyPhoto}&q=${data.name}+${data.weather[0].main}&lang=ru&image_type=photo&orientation=horizontal&category=places`)
+  getPhoto({ name, weather }) {
+    //делаем запрос на фото по городу и погоде
+    return fetch(`${this._photoUrl}${this._keyPhoto}&q=${name}+city+${weather[0].main}&lang=ru&image_type=photo&orientation=horizontal&category=places`)
       .then(res => {
         if (res.ok) {
           return res.json();
@@ -56,7 +56,7 @@ export default class Api {
   }
 
   getOtherPhoto(weather) {
-    //делаем расширенный запрос на фото по погоде
+    //делаем запрос на фото только по погоде
     return fetch(`${this._photoUrl}${this._keyPhoto}&q=${weather}+weather&lang=ru&image_type=photo&orientation=horizontal&category=backgrounds`)
       .then(res => {
         if (res.ok) {
@@ -66,4 +66,14 @@ export default class Api {
       })
   }
 
+  getPhotoOnlyCity({ name }) {
+    //делаем запрос на фото только по городу
+    return fetch(`${this._photoUrl}${this._keyPhoto}&q=${name}+city&lang=ru&image_type=photo&orientation=horizontal&category=places`)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+  }
 }

@@ -1,7 +1,7 @@
 let myMap;
 
 export function createdMap(lat, lng) {
-  const script = document.createElement('script')
+  const script = document.createElement('script');
 
   script.onload = () => {
     ymaps.ready(() => initMap(lat, lng));

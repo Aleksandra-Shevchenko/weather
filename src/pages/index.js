@@ -64,12 +64,15 @@ function findPhoto(dataWeather) {
       if (dataPhoto.total !== 0) {
         changePhoto(dataPhoto);
       } else {
-        api.getOtherPhoto(weather)
-          .then(dataOtherPhoto => {
-            changePhoto(dataOtherPhoto)
+        api.getPhotoOnlyCity(dataWeather)
+          .then(dataPhoto => {
+            changePhoto(dataPhoto);
           })
-          .catch((err) => {
-            console.log(err);
+          .catch(() => {
+            api.getOtherPhoto(weather)
+              .then(dataPhoto => {
+                changePhoto(dataPhoto);
+              });
           })
       }
     })
