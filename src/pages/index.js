@@ -50,6 +50,25 @@ function genereteDate(data) {
   return resStr;
 }
 
+// функция определения местоположения, при запрете от пользователя
+function setLocation(error) {
+  if (error.code == error.PERMISSION_DENIED) {
+    api.getLocation()
+      .then(data => {
+        createdMap(data.latitude, data.longitude);
+        return api.getWeather(data.latitude, data.longitude);
+      })
+      .then(data => {
+        findPhoto(data);
+        changeContent(data);
+        getUserCity(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+}
+
 
 // функция отрисовки фото
 function changePhoto(dataPhoto) {
@@ -84,36 +103,20 @@ function findPhoto(dataWeather) {
 // функция первичной отрисовки информации
 function getFirstInfo() {
   navigator.geolocation.getCurrentPosition(position => {
-      createdMap(position.coords.latitude, position.coords.longitude);
-      api.getWeather(position.coords.latitude, position.coords.longitude)
-        .then(data => {
-          findPhoto(data);
-          changeContent(data);
-          getUserCity(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
+    createdMap(position.coords.latitude, position.coords.longitude);
+
+    api.getWeather(position.coords.latitude, position.coords.longitude)
+      .then(data => {
+        findPhoto(data);
+        changeContent(data);
+        getUserCity(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     },
     function (error) {
-      if (error.code == error.PERMISSION_DENIED) {
-        api.getLocation()
-          .then(data => {
-            createdMap(data.latitude, data.longitude);
-            api.getWeather(data.latitude, data.longitude)
-              .then(data => {
-                findPhoto(data);
-                changeContent(data);
-                getUserCity(data);
-              })
-              .catch((err) => {
-                console.log(err);
-              })
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-      }
+      setLocation(error);
     }
   )
 }
