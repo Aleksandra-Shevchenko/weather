@@ -32,4 +32,4 @@
 * flexbox.
 
 --------
-[Вдохновлялась этим дизайном](https://www.behance.net/gallery/110896489/Shared-Sky-Weather-App-UI)(ссылка на макет в Behance)
+[Вдохновлялась этим дизайном](https://www.behance.net/gallery/110896489/Shared-Sky-Weather-App-UI) (ссылка на макет в Behance)
