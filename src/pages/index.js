@@ -145,15 +145,15 @@ config.searchForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   let nameOfCity = document.querySelector('.add-info__input').value;
   updateInfo(nameOfCity);
-  config.searchForm.reset();
+  // config.searchForm.reset();
 });
 
-config.addInfo.querySelectorAll('.add-info__list-el').forEach(item => {
-  item.addEventListener("click", () => {
-    updateInfo(item.textContent);
-  })
+// делегирование событий
+config.addInfo.addEventListener("click", (evt) => {
+  if(evt.target.classList.contains('add-info__list-el')) {
+    updateInfo(evt.target.textContent)
+  }
 })
-
 
 
 // ---ДЕЙСТВИЯ ПРИ ЗАКГРУЗКЕ СТРАНИЦЫ---
