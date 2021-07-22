@@ -1,4 +1,4 @@
-import './index.css';
+import "./index.css";
 import { config } from "../utils/constants.js";
 import Api from "../components/Api.js";
 import { createdMap, initMap, deleteMap } from "../components/ymap.js";
